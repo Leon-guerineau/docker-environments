@@ -1,8 +1,15 @@
 # docker-files
-dockerfiles for symfony
 
-créer la première fois:
-docker-compose up --build
+### - Dans le fichier avec le fichier docker-compose.yml
 
-lancer
+créer / mettre à jour :
+docker-compose up
+
+lancer en arrière plan :
 docker-compose up -d
+
+fermer :
+docker-compose kill
+
+supprimer :
+docker-compose down
