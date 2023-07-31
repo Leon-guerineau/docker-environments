@@ -1,0 +1,6 @@
+# For PHPStorm users :)
+.idea
+
+# To not commit the mysql server's data
+.mysql/data/*
+!.mysql/data/.gitkeep
