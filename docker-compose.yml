@@ -3,7 +3,7 @@ version: '3'
 services:
 
   php-apache:
-    container_name: ${NAMESPACE}-php-apache
+    container_name: ${NAMESPACE}-php-apache #.env
     image: ghcr.io/ld-web/php-apache:8.2
     volumes:
       - ./html:/var/www/html/
@@ -11,31 +11,39 @@ services:
       - '${PHP_PORT}:80' #.env
 
   mysql:
-    container_name: ${NAMESPACE}-mysql
+    container_name: ${NAMESPACE}-mysql #.env
     image: mysql:8.0.20
     command: --default-authentication-plugin=mysql_native_password
     environment:
-      MYSQL_USER: ${MYSQL_USER} #.env
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD} #.env
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD} #.env
     ports:
       - '${MYSQL_PORT}:3306' #.env
     volumes:
       - ./.mysql/data:/var/lib/mysql
-      - ./.mysql/scripts:/scripts # TODO : gather more info on how to manage scripts the right way (dedicated folder)
+      - ./.mysql/scripts:/scripts
 
   phpmyadmin:
-    container_name: ${NAMESPACE}-phpmyadmin
+    container_name: ${NAMESPACE}-phpmyadmin #.env
     image: phpmyadmin/phpmyadmin:latest
     environment:
       PMA_ARBITRARY: 1
       PMA_HOST: mysql
       PMA_PORT: ${MYSQL_PORT} #.env
-      PMA_USER: ${MYSQL_USER} #.env
-      PMA_PASSWORD: ${MYSQL_PASSWORD} #.env
+      PMA_USER: root
+      PMA_PASSWORD: ${MYSQL_ROOT_PASSWORD} #.env
       UPLOAD_LIMIT: 512M
     ports:
       - '${PMA_PORT}:80' #.env
     depends_on:
       - mysql
 
-  # TODO : Add adminer
+  adminer:
+    container_name: ${NAMESPACE}-adminer #.env
+    image: michalhosna/adminer
+    ports:
+      - '${ADM_PORT}:8080'
+    environment:
+      ADMINER_SERVER: mysql
+      ADMINER_USERNAME: root
+      ADMINER_PASSWORD: ${MYSQL_ROOT_PASSWORD} #.env
+      ADMINER_AUTOLOGIN: 1

@@ -14,7 +14,6 @@ rm: # Removes the containers
 	docker-compose rm -fsv
 
 # Open terminals in docker containers
-# to exit use the command exit TODO : Q&A
 
 php: # Open php-apache terminal
 	docker exec -it ${NAMESPACE}-php-apache bash
