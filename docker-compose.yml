@@ -19,8 +19,7 @@ services:
     ports:
       - '${MYSQL_PORT}:3306' #.env
     volumes:
-      - ./.mysql/data:/var/lib/mysql
-      - ./.mysql/scripts:/scripts
+      - ./.mysql-data:/var/lib/mysql
 
   phpmyadmin:
     container_name: ${NAMESPACE}-phpmyadmin #.env
