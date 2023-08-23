@@ -4,6 +4,17 @@
 
     This environment should only be used for local development purposes as it has none of the required safety measures needed for production.
 
+  - ## Prerequisites
+
+    - [docker](https://www.docker.com/)
+
+    - [gnu make](https://www.gnu.org/software/make) (optional)
+
+  - ## The Makefile
+
+    This [file](./Makefile) represents the list of command shortcuts to manage the docker containers.
+    They can be used with the make command or by simply copying them in a terminal though some of the use [environment variables](./.env) so be wary.
+
   - ## The containers
 
     - [php-apache](https://github.com/ld-web/docker-php-apache/pkgs/container/php-apache)
@@ -32,19 +43,3 @@
     The variables stored in the [`.env`](./.env) file are used in both the [`docker-compose.yml`](./docker-compose.yml) file and the [`Makefile`](./Makefile) so that if you want to change aspects of the environment, you only need to change it once.
     
     *PS : You need to restart the docker containers if you want to apply changes to this file.*
-
-
-Prerequisites
- - docker
- - gnu make
-
-Describe Makefile
- - start and stop containers
- - terminals : close with the command exit
-
-Notes for if you wanna change the environment
- - how to swap from docker image to docker file in docker-compose
-
-# TODO : see how to have root and normal users in mysql container.
-# TODO : change mysql to mariadb.
-# TODO : find a way to gitkeep the .mysql-data folder so that it can be emptied without removing the gitkeep.

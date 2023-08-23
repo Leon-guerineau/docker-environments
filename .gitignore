@@ -1,6 +1,6 @@
 # For PHPStorm users :)
 .idea
 
-# To not commit the mysql server's data.
+# The sql server's data is not versioned (except for the .gitkeep).
 .mysql-data/*
 !.mysql-data/.gitkeep
